@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreBluetooth
-
+import ChameleonFramework
 
 class ViewController: UIViewController, CBCentralManagerDelegate {
 
@@ -21,6 +21,8 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
   private var dictRSSI = Dictionary<String, NSMutableArray>()
 
   private weak var timer:NSTimer?
+
+  private var radarLine:CALayer?
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -46,12 +48,18 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
 
   }
 
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+
+    startRadar()
+  }
+
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
 
     print("Stop scan")
     stopScanning()
-
+    stopRadar()
   }
 
   override func didReceiveMemoryWarning() {
@@ -196,13 +204,13 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
       if (dots!.objectForKey(peripheralName) != nil) {
         let dot:CALayer = dots!.objectForKey(peripheralName) as! CALayer
         var p:CGPoint = dot.position;
-        if (distfloat>5) {
-          dot.backgroundColor = UIColor.redColor().CGColor
+        if (distfloat>8) {
+          dot.backgroundColor = UIColor.flatRedColor().CGColor
         }
         else {
-          dot.backgroundColor = UIColor.greenColor().CGColor
+          dot.backgroundColor = UIColor.flatGreenColor().CGColor
         }
-        p.y = self.view.frame.size.height - self.view.frame.size.height*(distfloat/15) - 10.0
+        p.y = self.view.frame.size.height - self.view.frame.size.height*(distfloat/15) - 60.0
         if (p.y < 0) {
           p.y = 100
         }
@@ -213,7 +221,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
         let rx = arrPositionX.removeFirst()
         //let rx = arc4random_uniform(UInt32(self.view.frame.size.width) - 20) + 10
         let ry = arc4random_uniform(UInt32(self.view.frame.size.height) - 20) + 10
-        let dot:CALayer = createDot(CGSizeMake(20, 20), point: CGPointMake(CGFloat(rx), CGFloat(ry)), color: UIColor.greenColor())
+        let dot:CALayer = createDot(CGSizeMake(20, 20), point: CGPointMake(CGFloat(rx), CGFloat(ry)), color: UIColor.flatGreenColor())
         dots?.setObject(dot, forKey: peripheralName)
         self.view.layer.addSublayer(dot)
       }
@@ -225,5 +233,46 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
 
   }
 
+  /**
+  畫線
+
+  - parameter pointFrom: 起點
+  - parameter pointTo:   終點
+  - parameter color:     顏色
+
+  - returns: <#return value description#>
+  */
+  func createLine(pointFrom:CGPoint, pointTo:CGPoint, color:UIColor) -> CALayer {
+    let line:CAShapeLayer = CAShapeLayer()
+    let path:UIBezierPath = UIBezierPath()
+    path.moveToPoint(pointFrom)
+    path.addLineToPoint(pointTo)
+    line.path = path.CGPath
+    line.lineWidth = 1.0
+    line.strokeColor = color.CGColor
+
+    return line
+    
+  }
+
+  func startRadar() {
+    radarLine = createLine(CGPointMake(0, 0), pointTo: CGPointMake(1000, 0), color: UIColor.flatGreenColorDark())
+    radarLine!.position = CGPointMake(self.view.frame.width*0.5, self.view.frame.height+2)
+
+    let pathAnimation = CABasicAnimation()
+    pathAnimation.duration = 5.0
+    //pathAnimation.fromValue = M_PI
+    pathAnimation.toValue = 2*M_PI
+    pathAnimation.repeatCount = 9999
+    radarLine!.addAnimation(pathAnimation, forKey: "transform.rotation")
+
+    self.view.layer.addSublayer(radarLine!)
+  }
+
+  func stopRadar() {
+    radarLine?.removeAllAnimations()
+    radarLine?.removeFromSuperlayer()
+
+  }
 }
 

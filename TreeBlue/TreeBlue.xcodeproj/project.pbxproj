@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		76CD8C63B7AC04A352C7AA60 /* Pods_TreeBlue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACC4F74FC97E8392515FBC9F /* Pods_TreeBlue.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		D01362041C8EBF3D000A3D9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01362031C8EBF3D000A3D9F /* AppDelegate.swift */; };
 		D01362061C8EBF3D000A3D9F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01362051C8EBF3D000A3D9F /* ViewController.swift */; };
 		D01362091C8EBF3D000A3D9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D01362071C8EBF3D000A3D9F /* Main.storyboard */; };
@@ -15,9 +16,16 @@
 		D01362161C8EBF56000A3D9F /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D01362151C8EBF56000A3D9F /* CoreBluetooth.framework */; };
 		D01362181C8EBF86000A3D9F /* TBDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01362171C8EBF86000A3D9F /* TBDefaults.swift */; settings = {ASSET_TAGS = (); }; };
 		D0D257F31C8ED3F0002CC55E /* BLEEnumExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D257F21C8ED3EF002CC55E /* BLEEnumExtension.swift */; settings = {ASSET_TAGS = (); }; };
+		D0DCA2721C96881B00FB120E /* Contacts-512.png in Resources */ = {isa = PBXBuildFile; fileRef = D0DCA2711C96881B00FB120E /* Contacts-512.png */; settings = {ASSET_TAGS = (); }; };
+		D0DCA2741C968B1600FB120E /* List Filled-100.png in Resources */ = {isa = PBXBuildFile; fileRef = D0DCA2731C968B1600FB120E /* List Filled-100.png */; settings = {ASSET_TAGS = (); }; };
+		D0DCA2781C968D5400FB120E /* Wi-Fi-104.png in Resources */ = {isa = PBXBuildFile; fileRef = D0DCA2771C968D5400FB120E /* Wi-Fi-104.png */; settings = {ASSET_TAGS = (); }; };
+		D0DCA27A1C96B3BB00FB120E /* radar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D0DCA2791C96B3BB00FB120E /* radar.jpg */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		80392CD5AE5CE3E4DC8A2170 /* Pods-TreeBlue.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TreeBlue.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TreeBlue/Pods-TreeBlue.debug.xcconfig"; sourceTree = "<group>"; };
+		ACC4F74FC97E8392515FBC9F /* Pods_TreeBlue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TreeBlue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3F1EBE97547486882E00A6F /* Pods-TreeBlue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TreeBlue.release.xcconfig"; path = "Pods/Target Support Files/Pods-TreeBlue/Pods-TreeBlue.release.xcconfig"; sourceTree = "<group>"; };
 		D01362001C8EBF3D000A3D9F /* TreeBlue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TreeBlue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D01362031C8EBF3D000A3D9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D01362051C8EBF3D000A3D9F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -28,6 +36,10 @@
 		D01362151C8EBF56000A3D9F /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		D01362171C8EBF86000A3D9F /* TBDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBDefaults.swift; sourceTree = "<group>"; };
 		D0D257F21C8ED3EF002CC55E /* BLEEnumExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEEnumExtension.swift; sourceTree = "<group>"; };
+		D0DCA2711C96881B00FB120E /* Contacts-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Contacts-512.png"; sourceTree = "<group>"; };
+		D0DCA2731C968B1600FB120E /* List Filled-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "List Filled-100.png"; sourceTree = "<group>"; };
+		D0DCA2771C968D5400FB120E /* Wi-Fi-104.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Wi-Fi-104.png"; sourceTree = "<group>"; };
+		D0DCA2791C96B3BB00FB120E /* radar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = radar.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,18 +48,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				D01362161C8EBF56000A3D9F /* CoreBluetooth.framework in Frameworks */,
+				76CD8C63B7AC04A352C7AA60 /* Pods_TreeBlue.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CFBDCDFDDB0C4C25441B367A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ACC4F74FC97E8392515FBC9F /* Pods_TreeBlue.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D01361F71C8EBF3D000A3D9F = {
 			isa = PBXGroup;
 			children = (
 				D01362151C8EBF56000A3D9F /* CoreBluetooth.framework */,
 				D01362021C8EBF3D000A3D9F /* TreeBlue */,
 				D01362011C8EBF3D000A3D9F /* Products */,
+				F271D064A4B6338854703A89 /* Pods */,
+				CFBDCDFDDB0C4C25441B367A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +85,7 @@
 		D01362021C8EBF3D000A3D9F /* TreeBlue */ = {
 			isa = PBXGroup;
 			children = (
+				D09C6AC71C96582E005C9ADC /* assets */,
 				D01362031C8EBF3D000A3D9F /* AppDelegate.swift */,
 				D0D257F21C8ED3EF002CC55E /* BLEEnumExtension.swift */,
 				D01362051C8EBF3D000A3D9F /* ViewController.swift */,
@@ -74,6 +98,26 @@
 			path = TreeBlue;
 			sourceTree = "<group>";
 		};
+		D09C6AC71C96582E005C9ADC /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				D0DCA2791C96B3BB00FB120E /* radar.jpg */,
+				D0DCA2771C968D5400FB120E /* Wi-Fi-104.png */,
+				D0DCA2731C968B1600FB120E /* List Filled-100.png */,
+				D0DCA2711C96881B00FB120E /* Contacts-512.png */,
+			);
+			name = assets;
+			sourceTree = "<group>";
+		};
+		F271D064A4B6338854703A89 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				80392CD5AE5CE3E4DC8A2170 /* Pods-TreeBlue.debug.xcconfig */,
+				B3F1EBE97547486882E00A6F /* Pods-TreeBlue.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -81,9 +125,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D01362121C8EBF3D000A3D9F /* Build configuration list for PBXNativeTarget "TreeBlue" */;
 			buildPhases = (
+				8B3C84DBEFEE9A902FF062A8 /* Check Pods Manifest.lock */,
 				D01361FC1C8EBF3D000A3D9F /* Sources */,
 				D01361FD1C8EBF3D000A3D9F /* Frameworks */,
 				D01361FE1C8EBF3D000A3D9F /* Resources */,
+				41B032D65D13FD8A58476FA0 /* Embed Pods Frameworks */,
+				108825F8FF7DF86E007374BA /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -131,13 +178,65 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0DCA2721C96881B00FB120E /* Contacts-512.png in Resources */,
 				D013620E1C8EBF3D000A3D9F /* LaunchScreen.storyboard in Resources */,
+				D0DCA27A1C96B3BB00FB120E /* radar.jpg in Resources */,
+				D0DCA2741C968B1600FB120E /* List Filled-100.png in Resources */,
 				D013620B1C8EBF3D000A3D9F /* Assets.xcassets in Resources */,
 				D01362091C8EBF3D000A3D9F /* Main.storyboard in Resources */,
+				D0DCA2781C968D5400FB120E /* Wi-Fi-104.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		108825F8FF7DF86E007374BA /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TreeBlue/Pods-TreeBlue-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		41B032D65D13FD8A58476FA0 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TreeBlue/Pods-TreeBlue-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B3C84DBEFEE9A902FF062A8 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D01361FC1C8EBF3D000A3D9F /* Sources */ = {
@@ -258,8 +357,10 @@
 		};
 		D01362131C8EBF3D000A3D9F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 80392CD5AE5CE3E4DC8A2170 /* Pods-TreeBlue.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = TreeBlue/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.isobar.TreeBlue;
@@ -269,8 +370,10 @@
 		};
 		D01362141C8EBF3D000A3D9F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F1EBE97547486882E00A6F /* Pods-TreeBlue.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = TreeBlue/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.isobar.TreeBlue;
