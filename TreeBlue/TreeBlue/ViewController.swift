@@ -12,8 +12,7 @@ import ChameleonFramework
 
 class ViewController: UIViewController, CBCentralManagerDelegate {
 
-  //private let filterKeyWord:String = "HMSoft"
-  private let filterKeyWord:String = "abeacon"
+  private let filterKeyWord:[String] = ["iPhone","HMSoft","abeacon"]
 
   private var centralManager:CBCentralManager?
   private var dots:NSMutableDictionary?
@@ -137,9 +136,13 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
     }
 
     if let peripheralName = peripheral.name {
-      if (peripheralName.containsString(filterKeyWord)) {
-        saveRSSI(peripheral.name!, RSSI: RSSI)
+      for z in filterKeyWord {
+        if (peripheralName.containsString(z)) {
+          saveRSSI(peripheral.name!, RSSI: RSSI)
+          break
+        }
       }
+
     }
     //print("AdvertisementData:\(advertisementData)")
 
