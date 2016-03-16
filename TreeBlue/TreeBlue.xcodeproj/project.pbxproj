@@ -20,6 +20,7 @@
 		D0DCA2741C968B1600FB120E /* List Filled-100.png in Resources */ = {isa = PBXBuildFile; fileRef = D0DCA2731C968B1600FB120E /* List Filled-100.png */; settings = {ASSET_TAGS = (); }; };
 		D0DCA2781C968D5400FB120E /* Wi-Fi-104.png in Resources */ = {isa = PBXBuildFile; fileRef = D0DCA2771C968D5400FB120E /* Wi-Fi-104.png */; settings = {ASSET_TAGS = (); }; };
 		D0DCA27A1C96B3BB00FB120E /* radar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D0DCA2791C96B3BB00FB120E /* radar.jpg */; settings = {ASSET_TAGS = (); }; };
+		D0EF5AB51C97BFD600857C3A /* PeripheralTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EF5AB41C97BFD600857C3A /* PeripheralTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		D0DCA2731C968B1600FB120E /* List Filled-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "List Filled-100.png"; sourceTree = "<group>"; };
 		D0DCA2771C968D5400FB120E /* Wi-Fi-104.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Wi-Fi-104.png"; sourceTree = "<group>"; };
 		D0DCA2791C96B3BB00FB120E /* radar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = radar.jpg; sourceTree = "<group>"; };
+		D0EF5AB41C97BFD600857C3A /* PeripheralTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				D01362031C8EBF3D000A3D9F /* AppDelegate.swift */,
 				D0D257F21C8ED3EF002CC55E /* BLEEnumExtension.swift */,
 				D01362051C8EBF3D000A3D9F /* ViewController.swift */,
+				D0EF5AB41C97BFD600857C3A /* PeripheralTableViewController.swift */,
 				D01362171C8EBF86000A3D9F /* TBDefaults.swift */,
 				D01362071C8EBF3D000A3D9F /* Main.storyboard */,
 				D013620A1C8EBF3D000A3D9F /* Assets.xcassets */,
@@ -244,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D01362181C8EBF86000A3D9F /* TBDefaults.swift in Sources */,
+				D0EF5AB51C97BFD600857C3A /* PeripheralTableViewController.swift in Sources */,
 				D01362061C8EBF3D000A3D9F /* ViewController.swift in Sources */,
 				D0D257F31C8ED3F0002CC55E /* BLEEnumExtension.swift in Sources */,
 				D01362041C8EBF3D000A3D9F /* AppDelegate.swift in Sources */,
