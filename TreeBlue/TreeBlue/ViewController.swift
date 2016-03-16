@@ -12,8 +12,6 @@ import ChameleonFramework
 
 class ViewController: UIViewController, CBCentralManagerDelegate {
 
-  private let filterKeyWord:[String] = ["iPhone","HMSoft","abeacon"]
-
   private var centralManager:CBCentralManager?
   private var dots:NSMutableDictionary?
   private var arrPositionX:[UInt] = [UInt]()
@@ -130,6 +128,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
     //  print("Device not at correct range")
     //  return
     //}
+
     if RSSI.integerValue > 0 {
       print("Device not at correct range:",RSSI)
       return
