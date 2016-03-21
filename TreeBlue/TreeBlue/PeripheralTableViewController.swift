@@ -153,7 +153,7 @@ class PeripheralTableViewController: UIViewController, UITableViewDelegate, UITa
 
     // 第八步: 掃描此連線裝置有哪些服務
     // Search only for services that match our UUID
-    //peripheral.discoverServices([hm10ServiceUUID])
+    peripheral.discoverServices([hm10ServiceUUID])
     //peripheral.discoverServices(nil)
 
     // 第九步: 讀取 RSSI 值(非同步)
@@ -163,7 +163,7 @@ class PeripheralTableViewController: UIViewController, UITableViewDelegate, UITa
   func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
     print("結束連線")
     peripheral.delegate = nil
-    
+
   }
 
   func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
@@ -174,6 +174,65 @@ class PeripheralTableViewController: UIViewController, UITableViewDelegate, UITa
   func peripheral(peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: NSError?) {
     // 更新
     savePeripheral(peripheral, rssi: RSSI)
+  }
+
+  // 第十一步: 發現裝置服務會觸發此函式
+  func peripheral(peripheral: CBPeripheral, didDiscoverServices error: NSError?) {
+    if let err = error {
+      print("Discover Services error:",err)
+    }
+
+    // 第十二步: 掃描 Characteristics
+    print("p Services:",peripheral.services)
+    for service in peripheral.services as [CBService]! {
+      if (service.UUID == hm10ServiceUUID) {
+        print("discover HM10")
+        peripheral.discoverCharacteristics([hm10CharacteristicUUID], forService: service)
+      }
+    }
+
+  }
+
+  // 第十三步: 發現 Characteristics
+  func peripheral(peripheral: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
+    if let err = error {
+      print("Discover Characteristics For Service error:",err)
+
+    }
+
+    // 比對 characteristics
+    for characteristic in service.characteristics as [CBCharacteristic]! {
+      if (characteristic.UUID == hm10CharacteristicUUID) {
+        // 第十四步: 回應需要訂閱
+        print("Set Notify")
+        peripheral.setNotifyValue(true, forCharacteristic: characteristic)
+      }
+    }
+
+  }
+
+  // 第十五步: 處理訂閱後傳回來的資料
+  func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
+    if let error = error {
+      print("Error discovering services: \(error.localizedDescription)")
+      return
+    }
+
+    print("characteristic:",characteristic)
+    if let stringFromData = String(data: characteristic.value!, encoding: NSUTF8StringEncoding) {
+      print("Received: \(stringFromData)")
+      // 處理回傳資料
+      // 取消訂閱
+      //peripheral.setNotifyValue(false, forCharacteristic: characteristic)
+      // 取消連線
+      //centralManager?.cancelPeripheralConnection(peripheral)
+    }
+  }
+
+  // 第十六步: 處理裝置訂閱狀態改變
+  func peripheral(peripheral: CBPeripheral, didUpdateNotificationStateForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
+    print("Error changing notification state: \(error?.localizedDescription)")
+
   }
 
   // 設定 tableViewCell 高度
