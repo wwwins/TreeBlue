@@ -61,6 +61,7 @@ class PeripheralTableViewController: UIViewController, UITableViewDelegate, UITa
 
     print("Stop scan")
     stopScanning()
+    cleanup()
   }
 
   override func didReceiveMemoryWarning() {
@@ -115,6 +116,15 @@ class PeripheralTableViewController: UIViewController, UITableViewDelegate, UITa
       self.tableView.reloadData()
     })
 
+  }
+
+  func cleanup() {
+    for (_,value) in discoveredPeripherals {
+      let p = value
+      if p.state == CBPeripheralState.Connected {
+        centralManager?.cancelPeripheralConnection(p.peripheral!)
+      }
+    }
   }
 
   // 第三步: 發現裝置會觸發此函式
@@ -258,6 +268,12 @@ class PeripheralTableViewController: UIViewController, UITableViewDelegate, UITa
 //      cell.textLabel?.text = String(format: "%@ [%.2f] [%@]", p.name, (p.rssi as! NSNumber).floatValue, p.state.description)
 //      cell.detailTextLabel?.text = String(format:"%@", p.uuidString)
       (cell.viewWithTag(100) as! UILabel).text = String(format: "%@ [%.2f]", p.name, p.rssi.floatValue)
+      if (p.state == CBPeripheralState.Disconnected) {
+        (cell.viewWithTag(101) as! UILabel).textColor = UIColor.flatRedColorDark()
+      }
+      else {
+        (cell.viewWithTag(101) as! UILabel).textColor = UIColor.flatBlueColor()
+      }
       (cell.viewWithTag(101) as! UILabel).text = String(format: "%@", p.state.description)
       (cell.viewWithTag(102) as! UILabel).text = String(format: "%@", p.uuidString)
     }
