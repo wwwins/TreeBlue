@@ -17,44 +17,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radar.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="WEo-dv-hcY">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radar.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="WEo-dv-hcY">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Contacts-512.png" translatesAutoresizingMaskIntoConstraints="NO" id="1Xs-l3-M6a">
-                                <rect key="frame" x="268" y="546" width="64" height="64"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="64" id="dPe-J8-qmc"/>
-                                    <constraint firstAttribute="height" constant="64" id="sRI-lS-Dm3"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="loI-1R-8Xv">
-                                <rect key="frame" x="20" y="532" width="48" height="48"/>
+                                <rect key="frame" x="268" y="596" width="64" height="64"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="48" id="0q8-E1-tBx"/>
-                                    <constraint firstAttribute="height" constant="48" id="nhw-sn-4VV"/>
+                                    <constraint firstAttribute="width" constant="64" id="HrL-jj-ok7"/>
+                                    <constraint firstAttribute="height" constant="64" id="ood-mb-Vjs"/>
                                 </constraints>
-                                <state key="normal" image="List Filled-100.png"/>
+                                <state key="normal" image="Contacts-512.png"/>
                                 <connections>
                                     <segue destination="bgE-Wp-J5y" kind="show" id="CGk-vo-aJ1"/>
                                 </connections>
                             </button>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="1Xs-l3-M6a" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2qT-cf-OVU"/>
                             <constraint firstItem="WEo-dv-hcY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="3Yb-TT-VDA"/>
+                            <constraint firstItem="loI-1R-8Xv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6nw-7N-9qu"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="loI-1R-8Xv" secondAttribute="bottom" constant="-60" id="IIg-JL-Rhv"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="WEo-dv-hcY" secondAttribute="bottom" id="JxR-W8-bW9"/>
                             <constraint firstAttribute="trailingMargin" secondItem="WEo-dv-hcY" secondAttribute="trailing" constant="-20" id="Okx-aY-ZMR"/>
                             <constraint firstItem="WEo-dv-hcY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="cmt-yF-67a"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="loI-1R-8Xv" secondAttribute="bottom" constant="20" id="f9p-Oe-RWz"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1Xs-l3-M6a" secondAttribute="bottom" constant="-10" id="pcc-9b-pcl"/>
-                            <constraint firstItem="loI-1R-8Xv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="yhA-cq-DLE"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="buttonForCharacter" destination="loI-1R-8Xv" id="kZA-uD-Hqi"/>
+                        <outlet property="layoutConstraintForBottom" destination="IIg-JL-Rhv" id="RKI-z5-2BA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -147,7 +141,6 @@
     </scenes>
     <resources>
         <image name="Contacts-512.png" width="512" height="512"/>
-        <image name="List Filled-100.png" width="100" height="100"/>
         <image name="Wi-Fi-104.png" width="104" height="104"/>
         <image name="radar.jpg" width="320" height="480"/>
     </resources>

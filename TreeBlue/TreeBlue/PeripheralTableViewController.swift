@@ -9,35 +9,6 @@
 import UIKit
 import CoreBluetooth
 
-class PeripheralData {
-  var name:String = ""
-  var uuidString:String = ""
-  var discoveredrssi:NSNumber = 0.0
-  var rssi:NSNumber {
-    get {
-      if (self.state == CBPeripheralState.Connected) {
-          peripheral?.readRSSI()
-      }
-      return discoveredrssi
-    }
-    set (newValue) {
-      self.discoveredrssi = newValue
-    }
-  }
-  var state:CBPeripheralState {
-    get {
-      if (peripheral == nil) {
-        return CBPeripheralState.Disconnected
-      }
-      else {
-        return peripheral!.state
-      }
-    }
-  }
-  var peripheral:CBPeripheral?
-
-}
-
 class PeripheralTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CBCentralManagerDelegate, CBPeripheralDelegate {
 
   @IBOutlet weak var tableView: UITableView!
@@ -180,7 +151,7 @@ class PeripheralTableViewController: UIViewController, UITableViewDelegate, UITa
     print("連線失敗")
   }
 
-  // 第十步: 傳回該裝置 RSSI 值
+  // 第十步: 傳回連線裝置 RSSI 值
   func peripheral(peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: NSError?) {
     // 更新
     savePeripheral(peripheral, rssi: RSSI)

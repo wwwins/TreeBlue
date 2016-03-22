@@ -15,7 +15,9 @@
 		D013620E1C8EBF3D000A3D9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D013620C1C8EBF3D000A3D9F /* LaunchScreen.storyboard */; };
 		D01362161C8EBF56000A3D9F /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D01362151C8EBF56000A3D9F /* CoreBluetooth.framework */; };
 		D01362181C8EBF86000A3D9F /* TBDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01362171C8EBF86000A3D9F /* TBDefaults.swift */; settings = {ASSET_TAGS = (); }; };
+		D064580A1CA0EC2E00413AC0 /* PeripheralData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06458091CA0EC2E00413AC0 /* PeripheralData.swift */; settings = {ASSET_TAGS = (); }; };
 		D0D257F31C8ED3F0002CC55E /* BLEEnumExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D257F21C8ED3EF002CC55E /* BLEEnumExtension.swift */; settings = {ASSET_TAGS = (); }; };
+		D0D2D1541C9FE025005005B4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D2D1531C9FE025005005B4 /* Colors.swift */; settings = {ASSET_TAGS = (); }; };
 		D0DCA2721C96881B00FB120E /* Contacts-512.png in Resources */ = {isa = PBXBuildFile; fileRef = D0DCA2711C96881B00FB120E /* Contacts-512.png */; settings = {ASSET_TAGS = (); }; };
 		D0DCA2741C968B1600FB120E /* List Filled-100.png in Resources */ = {isa = PBXBuildFile; fileRef = D0DCA2731C968B1600FB120E /* List Filled-100.png */; settings = {ASSET_TAGS = (); }; };
 		D0DCA2781C968D5400FB120E /* Wi-Fi-104.png in Resources */ = {isa = PBXBuildFile; fileRef = D0DCA2771C968D5400FB120E /* Wi-Fi-104.png */; settings = {ASSET_TAGS = (); }; };
@@ -36,7 +38,9 @@
 		D013620F1C8EBF3D000A3D9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D01362151C8EBF56000A3D9F /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		D01362171C8EBF86000A3D9F /* TBDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBDefaults.swift; sourceTree = "<group>"; };
+		D06458091CA0EC2E00413AC0 /* PeripheralData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralData.swift; sourceTree = "<group>"; };
 		D0D257F21C8ED3EF002CC55E /* BLEEnumExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEEnumExtension.swift; sourceTree = "<group>"; };
+		D0D2D1531C9FE025005005B4 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D0DCA2711C96881B00FB120E /* Contacts-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Contacts-512.png"; sourceTree = "<group>"; };
 		D0DCA2731C968B1600FB120E /* List Filled-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "List Filled-100.png"; sourceTree = "<group>"; };
 		D0DCA2771C968D5400FB120E /* Wi-Fi-104.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Wi-Fi-104.png"; sourceTree = "<group>"; };
@@ -93,6 +97,8 @@
 				D01362051C8EBF3D000A3D9F /* ViewController.swift */,
 				D0EF5AB41C97BFD600857C3A /* PeripheralTableViewController.swift */,
 				D01362171C8EBF86000A3D9F /* TBDefaults.swift */,
+				D0D2D1531C9FE025005005B4 /* Colors.swift */,
+				D06458091CA0EC2E00413AC0 /* PeripheralData.swift */,
 				D01362071C8EBF3D000A3D9F /* Main.storyboard */,
 				D013620A1C8EBF3D000A3D9F /* Assets.xcassets */,
 				D013620C1C8EBF3D000A3D9F /* LaunchScreen.storyboard */,
@@ -247,9 +253,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D01362181C8EBF86000A3D9F /* TBDefaults.swift in Sources */,
+				D0D2D1541C9FE025005005B4 /* Colors.swift in Sources */,
 				D0EF5AB51C97BFD600857C3A /* PeripheralTableViewController.swift in Sources */,
 				D01362061C8EBF3D000A3D9F /* ViewController.swift in Sources */,
 				D0D257F31C8ED3F0002CC55E /* BLEEnumExtension.swift in Sources */,
+				D064580A1CA0EC2E00413AC0 /* PeripheralData.swift in Sources */,
 				D01362041C8EBF3D000A3D9F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
