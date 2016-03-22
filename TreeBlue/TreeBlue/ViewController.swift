@@ -10,9 +10,16 @@ import UIKit
 import CoreBluetooth
 import ChameleonFramework
 
-class ViewController: UIViewController, CBCentralManagerDelegate {
+class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate {
+
+  @IBOutlet weak var buttonForCharacter: UIButton!
+  @IBOutlet weak var layoutConstraintForBottom: NSLayoutConstraint!
+  private var layoutConstraintForBottomConstant:CGFloat = 0.0
 
   private var centralManager:CBCentralManager?
+  private var connectedPeripheral:CBPeripheral?
+  private var discoveredPeripheral:CBPeripheral?
+
   private var dots:NSMutableDictionary?
   private var arrPositionX:[UInt] = [UInt]()
   private var dictRSSI = Dictionary<String, NSMutableArray>()
@@ -43,16 +50,30 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
 
     }
 
+
+  }
+
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+
+    createRadar()
+
   }
 
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
 
     startRadar()
+
+    updateCharacterConstraintForBottom()
   }
 
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
+
+    if connectedPeripheral?.state == CBPeripheralState.Connected {
+      centralManager?.cancelPeripheralConnection(connectedPeripheral!)
+    }
 
     print("Stop scan")
     stopScanning()
@@ -97,7 +118,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
   func onTimer() {
     print("onTimer")
     for (key,value) in dictRSSI {
-      if (value.count > 5) {
+      if (value.count > 3) {
         let maxValue = value.valueForKeyPath("@max.self")
         value.removeObjectAtIndex(value.indexOfObject(maxValue!))
         let minValue = value.valueForKeyPath("@min.self")
@@ -109,7 +130,9 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
       }
     }
     //dictRSSI = Dictionary<String, NSMutableArray>()
-
+    
+    // 讀取已連線裝置 RSSI 值
+    connectedPeripheral?.readRSSI()
   }
 
   func saveRSSI(name:String, RSSI:NSNumber) {
@@ -137,7 +160,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
     if let peripheralName = peripheral.name {
       for z in filterKeyWord {
         if (peripheralName.containsString(z)) {
-          saveRSSI(peripheral.name!, RSSI: RSSI)
+          saveRSSI(peripheral.identifier.UUIDString, RSSI: RSSI)
           break
         }
       }
@@ -146,7 +169,13 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
     //print("AdvertisementData:\(advertisementData)")
 
     // 找出符合的裝置進行連線
-    //centralManager?.connectPeripheral(peripheral, options: nil)
+    if (peripheral.identifier.UUIDString == DEVICE_IDENTIFIER_UUID) {
+      if (discoveredPeripheral != peripheral) {
+        print("Start connect peripheral")
+        discoveredPeripheral = peripheral
+        centralManager?.connectPeripheral(peripheral, options: nil)
+      }
+    }
   }
 
   /**
@@ -157,6 +186,31 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
   */
   func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
     print("didConnectPeripheral")
+    if (connectedPeripheral == peripheral) {
+      return
+    }
+
+    connectedPeripheral = peripheral
+    peripheral.delegate = self
+    peripheral.readRSSI()
+    
+  }
+
+  func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
+    connectedPeripheral = nil
+    discoveredPeripheral = nil
+
+  }
+
+  func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
+    connectedPeripheral = nil
+    discoveredPeripheral = nil
+  }
+
+  // 傳回連線裝置 RSSI 值
+  func peripheral(peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: NSError?) {
+    saveRSSI(peripheral.identifier.UUIDString, RSSI: RSSI)
+
   }
 
   /**
@@ -206,11 +260,14 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
       if (dots!.objectForKey(peripheralName) != nil) {
         let dot:CALayer = dots!.objectForKey(peripheralName) as! CALayer
         var p:CGPoint = dot.position;
-        if (distfloat>8) {
+        if (distfloat>10) {
           dot.backgroundColor = UIColor.flatRedColor().CGColor
         }
         else {
           dot.backgroundColor = UIColor.flatGreenColor().CGColor
+          if (name == DEVICE_IDENTIFIER_UUID) {
+            dot.backgroundColor = UIColor.flatSkyBlueColor().CGColor
+          }
         }
         p.y = self.view.frame.size.height - self.view.frame.size.height*(distfloat/15) - 60.0
         if (p.y < 0) {
@@ -250,7 +307,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
     path.moveToPoint(pointFrom)
     path.addLineToPoint(pointTo)
     line.path = path.CGPath
-    line.lineWidth = 1.0
+    line.lineWidth = 2.0
     line.strokeColor = color.CGColor
 
     return line
@@ -276,5 +333,54 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
     radarLine?.removeFromSuperlayer()
 
   }
+
+  func createRadar() {
+    let halfWidth = self.view.frame.size.width*0.5
+    let halfHeight = self.view.frame.size.height*0.5
+    let myGradientLayer = createGradientLayer()
+    myGradientLayer.position = CGPointMake(halfWidth,halfHeight)
+    self.view.layer.insertSublayer(myGradientLayer, atIndex: 0)
+
+    for i in 0...4 {
+      let circleLayer:CAShapeLayer = createCircle(CGSizeMake(CGFloat(200+300*i), CGFloat(200+300*i)))
+      circleLayer.position = CGPointMake(halfWidth, halfHeight*2)
+      self.view.layer.addSublayer(circleLayer)
+    }
+
+  }
+
+  func updateCharacterConstraintForBottom() {
+    self.layoutConstraintForBottom.constant = 0.0
+//    UIView.animateWithDuration(0.5) { () -> Void in
+//      self.view.layoutIfNeeded()
+//    }
+    UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.75, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+      self.view.layoutIfNeeded()
+      }, completion: nil)
+  }
+
+  func createGradientLayer() -> CAGradientLayer {
+    let gradientLayer:CAGradientLayer = CAGradientLayer()
+    gradientLayer.bounds = self.view.bounds
+    //gradientLayer.colors = [Colors.black.CGColor, Colors.green.CGColor, Colors.lightGreen.CGColor]
+    //gradientLayer.locations = [0,0.4,1]
+    gradientLayer.colors = [Colors.black.CGColor, Colors.green.CGColor]
+    gradientLayer.locations = [0,1]
+    gradientLayer.startPoint = CGPointMake(0, 0)
+    gradientLayer.endPoint = CGPointMake(0, 1)
+
+    return gradientLayer
+  }
+
+  func createCircle(size:CGSize) -> CAShapeLayer {
+    let circleLayer:CAShapeLayer = CAShapeLayer()
+    circleLayer.bounds = CGRectMake(0, 0, size.width, size.height)
+    circleLayer.fillColor = UIColor.clearColor().CGColor
+    circleLayer.strokeColor = UIColor.greenColor().CGColor
+    circleLayer.lineWidth = 3.0
+    circleLayer.path = UIBezierPath(ovalInRect: CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)).CGPath
+    return circleLayer
+  }
+
 }
 
