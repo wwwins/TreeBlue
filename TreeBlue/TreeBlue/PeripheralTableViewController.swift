@@ -54,7 +54,7 @@ class PeripheralTableViewController: UIViewController, UITableViewDelegate, UITa
 
   // 第二步: 掃描裝置(可指定或不指定特定裝置)
   func startScanning() {
-    // 不然定裝置，不允許抓取重覆的封包
+    // 不指定裝置，不允許抓取重覆的封包
     //centralManager?.scanForPeripheralsWithServices(nil, options: nil)
     // 不指定裝置，允許抓取重覆的封包，預設為不抓取(省電)
     centralManager?.scanForPeripheralsWithServices(nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey:NSNumber(bool: true)])
