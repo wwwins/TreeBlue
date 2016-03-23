@@ -299,7 +299,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
   - parameter pointTo:   終點
   - parameter color:     顏色
 
-  - returns: <#return value description#>
+  - returns: CALayer
   */
   func createLine(pointFrom:CGPoint, pointTo:CGPoint, color:UIColor) -> CALayer {
     let line:CAShapeLayer = CAShapeLayer()
